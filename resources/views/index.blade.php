@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('head')
+    <title>داستان های کوتاه</title>
+@endsection
 @section('content')
     <div class="flex-center position-ref full-height welcome-page">
         <div class="content">
