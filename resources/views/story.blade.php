@@ -1,6 +1,16 @@
 @extends('layouts.app')
+@section('head')
+    <title>{{$story->title}}</title>
+    <meta name="description" content="{{$story->title}}">
+    <meta name="keywords" content="{{$story->title}}">
+    <style type="text/css">
+        .story-section .body h1 {
+            margin: -15px 0 20px 0;
+        }
+    </style>
+@endsection
 @section('content')
-    <div class="flex-center position-ref full-height welcome-page">
+    <div class="flex-center position-ref full-height welcome-page story-section">
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -20,7 +30,9 @@
                             <p>{!! $story->article !!}</p>
                         </div>
                         <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px">
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8" onclick="shareStory()">اشتراک گذاری</li>
+                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
+                                onclick="shareStory()">اشتراک گذاری
+                            </li>
                             <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
                                 class="copy-story-link"
                                 data-clipboard-text="http://novelet.ir/story/{{$story->id}}">کپی لینک
@@ -37,6 +49,7 @@
 
     <script>
         new ClipboardJS('.copy-story-link');
+
         function shareStory() {
             if (navigator.share) {
                 navigator.share({
