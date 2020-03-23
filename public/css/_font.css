@@ -1,0 +1,168 @@
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Black.eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Black.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum)_Black.woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Medium.eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum)_Medium.woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Light.eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_Light.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum)_Light.woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 200;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_UltraLight.eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum).eot');
+  src: url('../fonts/iransans/eot/IRANSansWeb(FaNum).eot?#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/IRANSansWeb(FaNum).woff2') format('woff2'),
+    url('../fonts/iransans/woff/IRANSansWeb(FaNum).woff') format('woff'),
+    url('../fonts/iransans/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'icon-taxiplus';
+  src: url('../fonts/iransans/eot/icon-taxiplus.eot?30449977');
+  src: url('../fonts/iransans/eot/icon-taxiplus.eot?30449977#iefix')
+      format('embedded-opentype'),
+    url('../fonts/iransans/woff2/icon-taxiplus.woff2?30449977') format('woff2'),
+    url('../fonts/iransans/woff/icon-taxiplus.woff?30449977') format('woff'),
+    url('../fonts/iransans/ttf/icon-taxiplus.ttf?30449977') format('truetype'),
+    url('../fonts/iransans/svg/icon-taxiplus.svg?30449977#icon-taxiplus') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^='icon-taxiplus-']:before,
+[class*=' icon-taxiplus-']:before {
+  font-family: 'icon-taxiplus';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0.2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 26px;
+}
+
+.icon-taxiplus-more:before {
+  content: '\e800';
+}
+
+.icon-taxiplus-logout:before {
+  content: '\e801';
+}
+
+.icon-taxiplus-location-exit:before {
+  content: '\e802';
+}
+
+.icon-taxiplus-arrow-left:before {
+  content: '\e803';
+}
+
+.icon-taxiplus-arrow-right:before {
+  content: '\e804';
+}
+
+.icon-taxiplus-bell:before {
+  content: '\e805';
+}
+
+.icon-taxiplus-close:before {
+  content: '\e806';
+}
+
+.icon-taxiplus-counter:before {
+  content: '\e807';
+}
+
+.icon-taxiplus-fast-forward:before {
+  content: '\e808';
+}
+
+.icon-taxiplus-gift:before {
+  content: '\e809';
+}
+
+.icon-taxiplus-gift-outline:before {
+  content: '\e80a';
+}
+
+.icon-taxiplus-history:before {
+  content: '\e80b';
+}
+
+.icon-taxiplus-home:before {
+  content: '\e80c';
+}
+
+.icon-taxiplus-share:before {
+  content: '\e80d';
+}
+
+.icon-taxiplus-dots-horizontal-circle-outline:before {
+  content: '\e80e';
+}
+
+.icon-taxiplus-docs:before {
+  content: '\f0c5';
+}
