@@ -27,15 +27,25 @@
                         </nav>
                         <div class="body" style="text-align: right;background: #fff;
     box-shadow: 0 20px 30px -16px rgba(9,9,16,.2);padding: 10px;z-index: 10">
-                             <p>{!! $story->article !!}</p>
+                            <p>{!! $story->article !!}</p>
                         </div>
                         <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px">
+                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
+                                onclick="shareStory()">
+                                <a style="color: #a8a8a8" href="{{$story->url}}" target="_blank">منبع</a>
+                            </li>
                             <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
                                 onclick="shareStory()">اشتراک گذاری
                             </li>
                             <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
                                 class="copy-story-link"
-                                data-clipboard-text="http://novelet.ir/story/{{$story->id}}">کپی لینک
+                                id="copy-story-link"
+                                data-clipboard-text="{{env('APP_URL')}}/story/{{$story->id}}">کپی لینک
+                            </li>
+                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
+                                id="story-mark" onclick="storyMark()"
+                            >
+                                {{$story->mark ? "نشان شده" : "نشان کردن"}}
                             </li>
                         </ul>
                     </div>
@@ -45,10 +55,13 @@
     </div>
 @endsection
 @section('footer')
-    <script src="{{ asset('js/clipboard.js') }}"></script>
-
     <script>
-        new ClipboardJS('.copy-story-link');
+        var logined = "{{\Illuminate\Support\Facades\Auth::check()}}"
+        var csrfToken = "{{ csrf_token() }}"
+        window.addEventListener('load', () => {
+            var btn = document.getElementById('copy-story-link');
+            var clipboard = new ClipboardJS(btn);
+        }, false)
 
         function shareStory() {
             if (navigator.share) {
@@ -58,6 +71,28 @@
                     url: `https://taxiplus.ir/login?referral={{$story->id}}`
                 })
             }
+        }
+
+        function storyMark() {
+            if (!logined) {
+                return window.location.href = "/login?storyId={{$story->id}}"
+            }
+            $.ajax({
+                url: "/story/mark",
+                data: {
+                    storyId: "{{$story->id}}"
+                },
+                type: "POST",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+                },
+                success: function () {
+                    if ($('#story-mark').text().includes('نشان کردن')) {
+                        return $('#story-mark').text("نشان شده")
+                    }
+                    return $('#story-mark').text("نشان کردن")
+                }
+            });
         }
     </script>
 @endsection

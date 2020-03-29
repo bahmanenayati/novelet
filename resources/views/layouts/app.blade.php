@@ -29,7 +29,17 @@
         }
 
         .welcome-page .title {
-            font-size: 84px;
+            font-size: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .welcome-page {
+                padding: 10px;
+            }
+
+            .welcome-page .title {
+                font-size: 35px !important;
+            }
         }
 
         .welcome-page .full-height {
@@ -69,6 +79,42 @@
             text-decoration: none;
             text-transform: uppercase;
         }
+
+        body.dark-theme {
+            background: #000;
+            color: #fff !important;
+        }
+
+        body.dark-theme .navbar, body.dark-theme .card, body.dark-theme .dropdown-menu, body.dark-theme .dropdown-item {
+            background: #222 !important;
+            text-align: right;
+        }
+
+        .card .card-header {
+            text-align: right;
+        }
+
+        ul.navbar-nav {
+            direction: rtl;
+        }
+
+        .form-check-input {
+            margin-left: auto !important;
+            margin-right: -1.25rem !important;
+        }
+
+        body.dark-theme .welcome-page.story-section .breadcrumb {
+            background: #222 !important;
+        }
+
+        body.dark-theme .welcome-page.story-section .body {
+            background: #222 !important;
+            color: #fff !important;
+        }
+
+        body.dark-theme .navbar a {
+            color: #fff !important;
+        }
     </style>
     @yield('head')
 </head>
@@ -106,6 +152,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -132,8 +182,15 @@
     <main class="py-4">
         @yield('content')
     </main>
-    <a href="mailto:info@novelet.ir" class="toemail-link">info@novelet.ir</a>
 </div>
 @yield('footer')
+<script src="{{asset('/js/jquery.js')}}"></script>
+<script src="{{ asset('js/clipboard.js') }}"></script>
+<script>
+    let date = new Date()
+    if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) || date.getHours() > 20 || date.getHours() < 6) {
+        document.body.classList.add("dark-theme");
+    }
+</script>
 </body>
 </html>

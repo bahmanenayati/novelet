@@ -15,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    event(new \App\Events\Test('hello world'));
     return view('index');
 });
 
 Auth::routes();
 
 Route::resource('/story', 'StoryController');
+Route::resource('/story/mark', 'StoryMarkController');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::get('sitemap', function () {
 

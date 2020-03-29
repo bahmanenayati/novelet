@@ -10,4 +10,9 @@ class Story extends Model
         'title',
         'article'
     ];
+
+    public function mark()
+    {
+        return $this->hasOne(UserStoryMark::class);
+    }
 }
