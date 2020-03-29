@@ -15,6 +15,11 @@ class CreateStoriesTable extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 150)->index()->nullable();
+            $table->string('article', 10000)->nullable();
+            $table->string('url', 350)->nullable();
+            $table->enum('lang', ['fa', 'en'])->default('fa')->nullable();
+            $table->json('attribs')->default('[]');
             $table->timestamps();
         });
     }
