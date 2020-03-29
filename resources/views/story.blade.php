@@ -26,8 +26,8 @@
                             </ol>
                         </nav>
                         <div class="body" style="text-align: right;background: #fff;
-    box-shadow: 0 20px 30px -16px rgba(9,9,16,.2);padding: 10px">
-                            <p>{!! $story->article !!}</p>
+    box-shadow: 0 20px 30px -16px rgba(9,9,16,.2);padding: 10px;z-index: 10">
+                             <p>{!! $story->article !!}</p>
                         </div>
                         <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px">
                             <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"

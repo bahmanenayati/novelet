@@ -8,9 +8,9 @@ class StoryController extends Controller
 {
     public function index()
     {
-        $story = Story::query()->inRandomOrder()->first();
+        $story = Story::query()->select('id')->inRandomOrder()->first();
 
-        return view('story', ['story' => $story]);
+        return redirect("/story/{$story->id}");
     }
 
     public function show($id)
