@@ -16,9 +16,13 @@ class StoryController extends Controller
 
     public function show($id)
     {
-        $story = Story::query()->findOrFail($id)->with(['mark' => function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        }])->first();
+        $story = Story::query()->findOrFail($id);
+        $story->mark = null;
+        if (Auth::check()) {
+            $story->with(['mark' => function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            }])->first();
+        }
 
         return view('story', ['story' => $story]);
     }
