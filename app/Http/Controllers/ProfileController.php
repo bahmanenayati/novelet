@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StoryView;
 use App\Models\UserStoryMark;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -13,6 +13,17 @@ class ProfileController extends Controller
         $storyMarks = UserStoryMark::query()->where('user_id', Auth::user()->id)->with(['story' => function ($query) {
             $query->select('id', 'title');
         }])->get();
-        return view('profile', ['storyMarks' => $storyMarks]);
+        $lastSees = StoryView::query()
+            ->where('user_id', Auth::user()->id)
+            ->with(['story' => function ($query) {
+                $query->select('id', 'title');
+            }])
+            ->orderBy('created_at', 'DESC')
+            ->limit(15)
+            ->get();
+        return view('profile', [
+            'storyMarks' => $storyMarks,
+            'lastSees' => $lastSees,
+        ]);
     }
 }

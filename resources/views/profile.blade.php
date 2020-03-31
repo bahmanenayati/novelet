@@ -25,16 +25,34 @@
                         </nav>
                         <div class="body" style="text-align: right;background: #fff;
     box-shadow: 0 20px 30px -16px rgba(9,9,16,.2);padding: 10px;z-index: 10">
-                            <span>داستان های نشان شده</span>
-                            <ul style="margin-top: 10px">
-                                @foreach($storyMarks as $item)
-                                    <li>
-                                        <a style="text-decoration: none" href="/story/{{$item->story->id}}" target="_blank">
-                                            {{$item->story->title}}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <span>داستان های نشان شده</span>
+                                    <ul style="margin-top: 10px">
+                                        @foreach($storyMarks as $item)
+                                            <li>
+                                                <a style="text-decoration: none" href="/story/{{$item->story->id}}"
+                                                   target="_blank">
+                                                    {{$item->story->title}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <span>داستان های خوانده شده اخیر</span>
+                                    <ul style="margin-top: 10px">
+                                        @foreach($lastSees as $item)
+                                            <li>
+                                                <a style="text-decoration: none" href="/story/{{$item->story->id}}"
+                                                   target="_blank">
+                                                    {{$item->story->title}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

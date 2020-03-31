@@ -15,6 +15,7 @@ class CreateStoryViewsTable extends Migration
     {
         Schema::create('story_views', function (Blueprint $table) {
             $table->id();
+            $table->ipAddress('ip');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('story_id');
 
