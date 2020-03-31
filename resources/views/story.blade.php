@@ -30,8 +30,7 @@
                             <p>{!! $story->article !!}</p>
                         </div>
                         <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px">
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
-                                onclick="shareStory()">
+                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8">
                                 <a style="color: #a8a8a8" href="{{$story->url}}" target="_blank">منبع</a>
                             </li>
                             <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"

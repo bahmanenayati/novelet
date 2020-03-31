@@ -8,7 +8,10 @@ class Story extends Model
 {
     protected $fillable = [
         'title',
-        'article'
+        'article',
+        'url',
+        'lang',
+        'attribs'
     ];
 
     public function mark()
