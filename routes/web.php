@@ -3,6 +3,7 @@
 use App\Models\Story;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Auth::routes();
 
 Route::resource('/story', 'StoryController');
 Route::resource('/story/mark', 'StoryMarkController');
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile', 'ProfileController@index')->name('profile')->middleware(['auth']);
 
 Route::get('sitemap', function () {
 

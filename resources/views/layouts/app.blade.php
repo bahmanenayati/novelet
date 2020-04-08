@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tabbar.css') }}" rel="stylesheet">
     <style type="text/css">
         .toemail-link {
             position: absolute;
@@ -24,8 +25,9 @@
             right: 0;
             left: 0;
             color: #7b7b7b;
-            width: 100px;
+            width: 150px;
             margin: auto;
+            text-align: center;
         }
 
         .welcome-page .title {
@@ -123,65 +125,94 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{asset('/images/logo.png')}}" height="45">
+                <img src="{{asset('/images/99_Novelete_logo1-0p.png')}}" height="45">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav">
-
-                </ul>
-            </div>
         </div>
     </nav>
 
     <main class="py-4">
         @yield('content')
     </main>
+    <div class="tabbar">
+        <div class="tabs">
+            <input type="radio" name="tab" id="tab-04"/>
+            <label for="tab-04">
+                <svg>
+                    <use xlink:href="#icon-04" class="icon"/>
+                </svg>
+                <div class="wave"></div>
+            </label>
+            <input type="radio" name="tab" id="tab-03"/>
+            <label for="tab-03">
+                <svg>
+                    <use xlink:href="#icon-03" class="icon"/>
+                </svg>
+                <div class="wave"></div>
+            </label>
+            <input type="radio" name="tab" id="tab-02"/>
+            <label for="tab-02">
+                <svg>
+                    <use xlink:href="#icon-02" class="icon"/>
+                </svg>
+                <div class="wave"></div>
+            </label>
+            <a href="{{env('APP_URL')}}/story">
+                <input type="radio" name="tab" id="tab-01" checked/>
+                <label for="tab-01">
+                    <svg>
+                        <use xlink:href="#icon-01" class="icon"/>
+                    </svg>
+                    <div class="wave"></div>
+                </label>
+            </a>
+        </div>
+
+        <!-- SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-01">
+                <path
+                    d="M13.93,1H20.8A4.21,4.21,0,0,1,25,5.2V20.8A4.21,4.21,0,0,1,20.8,25H5.2A4.21,4.21,0,0,1,1,20.8V5.2A4.21,4.21,0,0,1,5.2,1h.47"/>
+                <line x1="16" y1="10" x2="18" y2="10"/>
+                <line x1="8" y1="10" x2="12" y2="10"/>
+                <line x1="8" y1="15" x2="18" y2="15"/>
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-02">
+                <path
+                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
+                <polygon points="15 14.33 11 17 11 11.67 15 9 15 14.33"/>
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-03">
+                <path
+                    d="M7.91,2.08a11.15,11.15,0,0,0-5.73,9.81v6a7.83,7.83,0,0,1-1,2.92A1.47,1.47,0,0,0,2.43,23H23.57a1.47,1.47,0,0,0,1.26-2.16,7.83,7.83,0,0,1-1-2.92v-6A11.06,11.06,0,0,0,15.18,1"/>
+                <path d="M15,23a2,2,0,0,1-4,0"/>
+                <path d="M16,5.51A6.53,6.53,0,0,1,19.65,9.4"/>
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-04">
+                <path
+                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
+                <path d="M18,18.26a8,8,0,0,1-10.09-.1"/>
+            </symbol>
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" height="0" width="0">
+            <clipPath id="path-icon-01">
+                <path
+                    d="M13.93,1H20.8A4.21,4.21,0,0,1,25,5.2V20.8A4.21,4.21,0,0,1,20.8,25H5.2A4.21,4.21,0,0,1,1,20.8V5.2A4.21,4.21,0,0,1,5.2,1h.47"/>
+            </clipPath>
+            <clipPath id="path-icon-02">
+                <path
+                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
+            </clipPath>
+            <clipPath id="path-icon-03">
+                <path
+                    d="M7.91,2.08a11.15,11.15,0,0,0-5.73,9.81v6a7.83,7.83,0,0,1-1,2.92A1.47,1.47,0,0,0,2.43,23H23.57a1.47,1.47,0,0,0,1.26-2.16,7.83,7.83,0,0,1-1-2.92v-6A11.06,11.06,0,0,0,15.18,1"/>
+            </clipPath>
+            <clipPath id="path-icon-04">
+                <path
+                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
+            </clipPath>
+        </svg>
+    </div>
 </div>
 @yield('footer')
 <script src="{{asset('/js/jquery.js')}}"></script>
