@@ -21,6 +21,32 @@
     <style type="text/css">
         .story-section .body h1 {
             margin: -15px 0 20px 0;
+            font-size: 20px;
+        }
+
+        .story-section .body p {
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .story-section .extra-links li {
+            font-size: 12px;
+            cursor: pointer;
+            float: right;
+            margin: 5px;
+            padding: 0px 9px 0 0;
+            border-radius: 3px;
+            background: #ffffff;
+            color: #4fe1b5 !important;
+            border: 1px solid #4fe1b5;
+        }
+
+        .story-section .extra-links li a {
+            color: #4fe1b5 !important;
+        }
+
+        .story-section .extra-links li img {
+            width: 30px;
         }
     </style>
 @endsection
@@ -29,7 +55,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 col-xs-12 col-sm-10" style="margin: auto">
+                    <div class="col-md-12" style="margin: auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active" aria-current="page">
@@ -40,34 +66,28 @@
                                 </li>
                             </ol>
                         </nav>
-                        <div class="body" style="text-align: right;background: #fff;
-    box-shadow: 0 20px 30px -16px rgba(9,9,16,.2);padding: 10px;z-index: 10">
+                        <div class="body" style="text-align: right;padding: 10px;z-index: 10">
                             <p>{!! $story->article !!}</p>
                         </div>
-                        <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px">
-                            <li style="font-size: 12px;float: right;margin-left: 15px;color: #a8a8a8">
-                                {{$story->views}} نفر خوانده است
+                        <ul style="list-style: none;padding: 0;text-align: right;padding-top: 10px" class="extra-links">
+                            {{--                            <li>--}}
+                            {{--                                {{$story->views}} نفر خوانده است--}}
+                            {{--                                <img src="{{asset('/images/icons/Novelet_icon-0k.png')}}">--}}
+                            {{--                            </li>--}}
+                            <li>
+                                <a href="{{$story->url}}" target="_blank">منبع</a>
+                                <img src="{{asset('/images/icons/Novelet_icon_Artboard p.png')}}">
                             </li>
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 15px;color: #a8a8a8">
-                                <a style="color: #a8a8a8" href="{{$story->url}}" target="_blank">منبع</a>
-                            </li>
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 15px;color: #a8a8a8"
-                                onclick="shareStory()">اشتراک گذاری
-                            </li>
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 15px;color: #a8a8a8"
-                                class="copy-story-link"
-                                id="copy-story-link"
-                                data-clipboard-text="{{env('APP_URL')}}/story/{{$story->id}}">کپی لینک
-                            </li>
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 10px;color: #a8a8a8"
-                                id="story-mark" onclick="storyMark()"
+                            <li id="story-mark" onclick="storyMark()"
                             >
-                                {{$story->mark ? "نشان شده" : "نشان کردن"}}
+                                <span>
+                                    {{$story->mark ? "نشان شده" : "نشان کردن"}}
+                                </span>
+                                <img src="{{asset('/images/icons/Novelet_icon-0m.png')}}">
                             </li>
-                            <li style="font-size: 12px;cursor:pointer;float: right;margin-left: 15px;color: #a8a8a8">
-                                <a style="color: #a8a8a8" href="{{env('APP_URL')}}/story">
-                                    داستان بعدی
-                                </a>
+                            <li onclick="shareStory()">
+                                اشتراک گذاری
+                                <img src="{{asset('/images/icons/Novelet_icon-0k.png')}}">
                             </li>
                         </ul>
                     </div>
@@ -109,34 +129,12 @@
                     xhr.setRequestHeader('X-CSRF-Token', csrfToken);
                 },
                 success: function () {
-                    if ($('#story-mark').text().includes('نشان کردن')) {
-                        return $('#story-mark').text("نشان شده")
+                    if ($('#story-mark span').text().includes('نشان کردن')) {
+                        return $('#story-mark span').text("نشان شده")
                     }
-                    return $('#story-mark').text("نشان کردن")
+                    return $('#story-mark span').text("نشان کردن")
                 }
             });
         }
-
-        function birthday(squares, days, month) {
-            let result = []
-            for (let i = 1; i <= squares.length; i++) {
-                let subArray = squares.slice(i - 1, (i - 1) + month)
-                if (subArray.length === month) {
-                    let sum = subArray.reduce((x, j) => x + j, 0)
-                    if (sum === days) {
-                        result.push(subArray)
-                    }
-                }
-            }
-            return result.length > 0 ? result.length === 1 ? result[0] : result : 0
-        }
-
-        console.log(birthday([2, 2, 1, 3, 2], 4, 2), 'Should be [2, 2], [1, 3]');
-
-        console.log(birthday([1, 2, 1, 3, 2], 3, 2), 'Should be [1, 2], [2, 1]');
-
-        console.log(birthday([1, 1, 1, 1, 1, 1], 3, 2), 'Should be 0');
-
-        console.log(birthday([4], 4, 1), 'Should be [4]');
     </script>
 @endsection

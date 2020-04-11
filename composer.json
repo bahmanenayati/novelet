@@ -13,11 +13,12 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "irazasyed/telegram-bot-sdk": "^2.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelium/sitemap": "^7.0",
-        "irazasyed/telegram-bot-sdk": "^2.0",
+        "silviolleite/laravelpwa": "^1.0",
         "soundasleep/html2text": "~1.1"
     },
     "require-dev": {

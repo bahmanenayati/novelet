@@ -7,21 +7,20 @@
 }
 
 .tabs {
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
     margin: auto;
     direction: ltr !important;
     --background: #ffffff;
     --light-grey: #c6cfd9;
-    --wave-color: #2ac8dd;
+    --wave-color: #3f54d0;
     --width: 300px;
     --height: 75px;
     --border-radius: var(--height);
     background: var(--background);
     width: var(--width);
     height: var(--height);
-    padding: 0;
     position: relative;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
     display: -webkit-box;
     display: flex;
     justify-content: space-around;
@@ -253,10 +252,6 @@
         transform: scale(1.5, 0.5) rotate(45deg);
         top: 19px;
     }
-}
-
-body {
-    background: #eeeef5;
 }
 
 body .socials {

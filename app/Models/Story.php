@@ -18,4 +18,9 @@ class Story extends Model
     {
         return $this->hasOne(UserStoryMark::class);
     }
+
+    public function views()
+    {
+        return $this->hasMany(StoryView::class, 'story_id', 'id');
+    }
 }

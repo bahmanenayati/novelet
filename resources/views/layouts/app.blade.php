@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @laravelPWA
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,14 +21,11 @@
     <link href="{{ asset('css/tabbar.css') }}" rel="stylesheet">
     <style type="text/css">
         .toemail-link {
-            position: absolute;
-            bottom: 25px;
-            right: 0;
-            left: 0;
             color: #7b7b7b;
             width: 150px;
             margin: auto;
             text-align: center;
+            display: block;
         }
 
         .welcome-page .title {
@@ -117,110 +115,154 @@
         body.dark-theme .navbar a {
             color: #fff !important;
         }
+
+        .add-home-screen-parent {
+            display: none;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .65);
+            bottom: 0;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            left: 0;
+            overflow-y: auto;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        .add-home-screen-parent .body {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 350px;
+            margin: auto;
+            width: 90%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            -webkit-animation: IGCoreModalShow .1s ease-out;
+            animation: IGCoreModalShow .1s ease-out;
+            border-radius: 12px;
+            -webkit-flex-shrink: 1;
+            flex-shrink: 1;
+            max-height: calc(100% - 40px);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .add-home-screen-parent h2 {
+            font-weight: 100;
+            width: 90%;
+            margin: auto;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .add-home-screen-parent p {
+            width: 80%;
+            margin: auto;
+            color: #a8a8a8;
+            margin-bottom: 30px;
+        }
+
+        .add-home-screen-parent .body .head .image {
+            background-color: #ffffff;
+            border-radius: 100%;
+            width: 80px;
+            height: 80px;
+            box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.05);
+            padding: 16px 15px;
+            margin: 30px auto;
+        }
+
+        .add-home-screen-parent .body .head .image img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .add-home-screen-parent .body .buttons div:first-child {
+            color: #3f54d0;
+            border-bottom: 1px solid #eee;
+            border-top: 1px solid #eee;
+            font-weight: 500;
+        }
+
+        .add-home-screen-parent .body .buttons div {
+            padding: 10px;
+        }
+
+        .add-home-screen-parent .body .buttons div {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+        }
     </style>
     @yield('head')
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{asset('/images/99_Novelete_logo1-0p.png')}}" height="45">
-            </a>
-        </div>
-    </nav>
+<div id="app" style="max-width: 500px;margin: auto">
+
+    @if(basename($_SERVER['PHP_SELF']) !== "index.php")
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{asset('/images/99_Novelete_logo1-0p.png')}}" height="45">
+                </a>
+                <a href="{{\Illuminate\Support\Facades\URL::previous()}}">
+                    <img src="{{asset('/images/icons/Novelet_icon-0l.png')}}" width="50">
+                </a>
+            </div>
+        </nav>
+    @endif
 
     <main class="py-4">
         @yield('content')
-    </main>
-    <div class="tabbar">
-        <div class="tabs">
-            <input type="radio" name="tab" id="tab-04"/>
-            <label for="tab-04">
-                <svg>
-                    <use xlink:href="#icon-04" class="icon"/>
-                </svg>
-                <div class="wave"></div>
-            </label>
-            <input type="radio" name="tab" id="tab-03"/>
-            <label for="tab-03">
-                <svg>
-                    <use xlink:href="#icon-03" class="icon"/>
-                </svg>
-                <div class="wave"></div>
-            </label>
-            <input type="radio" name="tab" id="tab-02"/>
-            <label for="tab-02">
-                <svg>
-                    <use xlink:href="#icon-02" class="icon"/>
-                </svg>
-                <div class="wave"></div>
-            </label>
-            <a href="{{env('APP_URL')}}/story">
-                <input type="radio" name="tab" id="tab-01" checked/>
-                <label for="tab-01">
-                    <svg>
-                        <use xlink:href="#icon-01" class="icon"/>
-                    </svg>
-                    <div class="wave"></div>
-                </label>
-            </a>
+        @if(basename($_SERVER['PHP_SELF']) === "index.php")
+            <div class="toemail-link" target="_blank">
+                <a href="https://t.me/novelet_fa">
+                    Telegram channel
+                </a>
+                <a href="mailto:info@novelet.ir" target="_blank">
+                    info@novelet.ir
+                </a>
+            </div>
+        @endif
+        <div class="add-home-screen-parent" id="addToHomeScreenDialog">
+            <div class="body">
+                <div class="head">
+                    <div class="image">
+                        <img src="{{asset('/images/99_Novelete_logo_Export-0o.png')}}">
+                    </div>
+                    <h2>افزودن نُوِلت به صفحه اصلی ؟</h2>
+                    <p>با اضافه کردن نُوِلت به صفحه اصلی موبایل خود به راحتی از داستان کوتاه استفاده نمایید.</p>
+                </div>
+                <div class="buttons">
+                    <div class="" onclick="addToHomeScreen(true)" id="btnAddToHomeScreen">اضافه کردن به صفحه اصلی</div>
+                    <div class="" onclick="addToHomeScreen(false)">خیر</div>
+                </div>
+            </div>
         </div>
-
-        <!-- SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-01">
-                <path
-                    d="M13.93,1H20.8A4.21,4.21,0,0,1,25,5.2V20.8A4.21,4.21,0,0,1,20.8,25H5.2A4.21,4.21,0,0,1,1,20.8V5.2A4.21,4.21,0,0,1,5.2,1h.47"/>
-                <line x1="16" y1="10" x2="18" y2="10"/>
-                <line x1="8" y1="10" x2="12" y2="10"/>
-                <line x1="8" y1="15" x2="18" y2="15"/>
-            </symbol>
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-02">
-                <path
-                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
-                <polygon points="15 14.33 11 17 11 11.67 15 9 15 14.33"/>
-            </symbol>
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-03">
-                <path
-                    d="M7.91,2.08a11.15,11.15,0,0,0-5.73,9.81v6a7.83,7.83,0,0,1-1,2.92A1.47,1.47,0,0,0,2.43,23H23.57a1.47,1.47,0,0,0,1.26-2.16,7.83,7.83,0,0,1-1-2.92v-6A11.06,11.06,0,0,0,15.18,1"/>
-                <path d="M15,23a2,2,0,0,1-4,0"/>
-                <path d="M16,5.51A6.53,6.53,0,0,1,19.65,9.4"/>
-            </symbol>
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" id="icon-04">
-                <path
-                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
-                <path d="M18,18.26a8,8,0,0,1-10.09-.1"/>
-            </symbol>
-        </svg>
-
-        <svg xmlns="http://www.w3.org/2000/svg" height="0" width="0">
-            <clipPath id="path-icon-01">
-                <path
-                    d="M13.93,1H20.8A4.21,4.21,0,0,1,25,5.2V20.8A4.21,4.21,0,0,1,20.8,25H5.2A4.21,4.21,0,0,1,1,20.8V5.2A4.21,4.21,0,0,1,5.2,1h.47"/>
-            </clipPath>
-            <clipPath id="path-icon-02">
-                <path
-                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
-            </clipPath>
-            <clipPath id="path-icon-03">
-                <path
-                    d="M7.91,2.08a11.15,11.15,0,0,0-5.73,9.81v6a7.83,7.83,0,0,1-1,2.92A1.47,1.47,0,0,0,2.43,23H23.57a1.47,1.47,0,0,0,1.26-2.16,7.83,7.83,0,0,1-1-2.92v-6A11.06,11.06,0,0,0,15.18,1"/>
-            </clipPath>
-            <clipPath id="path-icon-04">
-                <path
-                    d="M17,1a12.33,12.33,0,0,1,8,11.65A12.18,12.18,0,0,1,13,25,12.18,12.18,0,0,1,1,12.65,12.33,12.33,0,0,1,9,1"/>
-            </clipPath>
-        </svg>
-    </div>
+    </main>
 </div>
-@yield('footer')
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{ asset('js/clipboard.js') }}"></script>
+@yield('footer')
 <script>
     let date = new Date()
     if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) || date.getHours() > 20 || date.getHours() < 6) {
-        document.body.classList.add("dark-theme");
+        // document.body.classList.add("dark-theme");
     }
 </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -235,6 +277,56 @@
     gtag('js', new Date());
 
     gtag('config', 'G-S9VRXVXZM9');
+</script>
+<script type="text/javascript">
+    // Initialize the service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceworker.js', {
+            scope: '.'
+        }).then(function (registration) {
+            // Registration was successful
+            console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+            // registration failed :(
+            console.log('Laravel PWA: ServiceWorker registration failed: ', err);
+        });
+    }
+</script>
+<script>
+    $(document).ready(() => {
+        let deferredPrompt;
+        const addBtn = document.querySelector('#btnAddToHomeScreen');
+        // window.addEventListener('beforeinstallprompt', (e) => {
+        //     e.preventDefault();
+        //     deferredPrompt = e;
+        //
+        //     addBtn.addEventListener('click', (e) => {
+        //         deferredPrompt.prompt();
+        //         deferredPrompt.userChoice.then((choiceResult) => {
+        //             if (choiceResult.outcome === 'accepted') {
+        //                 console.log('User accepted the A2HS prompt');
+        //             } else {
+        //                 console.log('User dismissed the A2HS prompt');
+        //             }
+        //             deferredPrompt = null;
+        //             localStorage.setItem('showedLocaleScreenDialog', true)
+        //             $('#addToHomeScreenDialog').hide()
+        //         });
+        //     });
+        // });
+        var showedLocaleScreenDialog = localStorage.getItem('showedLocaleScreenDialog')
+        if (showedLocaleScreenDialog === undefined || !showedLocaleScreenDialog || showedLocaleScreenDialog === 'false') {
+            $('#addToHomeScreenDialog').show()
+        }
+    });
+
+    function addToHomeScreen(status) {
+        if (status) {
+        } else {
+            localStorage.setItem('showedLocaleScreenDialog', true)
+            $('#addToHomeScreenDialog').hide()
+        }
+    }
 </script>
 
 </body>

@@ -17,7 +17,14 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $request = request();
+    $stories = Story::query()->withCount('views');
+    if ($request->filled('query')) {
+        $stories->where('title', 'like', '%' . $request->get('query') . '%');
+        $stories->orWhere('article', 'like', '%' . $request->get('query') . '%');
+    }
+    $stories = $stories->orderBy('updated_at', 'DESC')->paginate();
+    return view('index', ['stories' => $stories]);
 });
 
 Auth::routes();
