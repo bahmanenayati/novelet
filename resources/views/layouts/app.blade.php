@@ -20,6 +20,23 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/tabbar.css') }}" rel="stylesheet">
     <style type="text/css">
+        .card {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .form-check {
+            margin: 0 20px;
+        }
+
+        .btn-primary {
+            background-color: #3f54d0 !important;
+        }
+
+        .btn-link {
+            color: #3f54d0 !important;
+        }
+
         .toemail-link {
             color: #7b7b7b;
             width: 150px;
@@ -212,11 +229,14 @@
     @yield('head')
 </head>
 <body>
-<div id="app" style="max-width: 500px;margin: auto">
+<div id="app" style="max-width: 500px;margin: auto;margin-bottom: 40px">
 
     @if(basename($_SERVER['PHP_SELF']) !== "index.php")
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0">
             <div class="container">
+                <a class="navbar-brand" href="{{ url('/profile') }}">
+                    <img src="{{asset('/images/icons/Novelet_icon_Artboard jj.png')}}" height="45">
+                </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('/images/99_Novelete_logo1-0p.png')}}" height="45">
                 </a>

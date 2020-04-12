@@ -172,6 +172,61 @@
             margin-right: 14px;
         }
 
+        .btn-random-story {
+            z-index: 20;
+            position: fixed;
+            bottom: 20px;
+            width: 150px;
+            border-radius: 25px;
+            padding: 8px 10px;
+            right: 0;
+            left: 0;
+            margin: auto;
+            background-color: #3f54b0;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0px 0px 8px 0px rgba(49, 49, 49, 0.44);
+            display: none;
+        }
+
+        .btn-random-story-animate {
+            display: block;
+            -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+            animation: slide-in-bottom 0.5s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+        }
+
+        .btn-random-story a {
+            color: #fff;
+        }
+
+        @-webkit-keyframes slide-in-bottom {
+            0% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in-bottom {
+            0% {
+                -webkit-transform: translateY(1000px);
+                transform: translateY(1000px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
     </style>
 @endsection
 @section('content')
@@ -209,9 +264,9 @@
                                     <h2>{{$story->title}}</h2>
                                     <p>{{Str::limit(\Soundasleep\Html2Text::convert($story->article), 250)}}</p>
                                     <span class="views-count">{{$story->views_count }} نفر خوانده است</span>
-                                    <span style="color: #3f54d0">ادامه داستان</span>
                                     <img class="floating" width="40"
                                          src="{{asset('/images/icons/Novelet_icon-0l.png')}}">
+                                    <span style="color: #3f54d0;margin-right: -8px;">ادامه داستان</span>
                                 </div>
                             </a>
                         @endforeach
@@ -234,6 +289,11 @@
                 </div>
             </div>
         </div>
+        <a href="/story">
+            <div class=" btn-random-story">
+                داستان تصادفی
+            </div>
+        </a>
     </div>
 @endsection
 @section('footer')
@@ -261,6 +321,13 @@
             }).keyup((e) => {
                 if (e.keyCode == 13) {
                     window.location.href = `/?query=${e.target.value}`
+                }
+            });
+            $(window).on('scroll', function (e) {
+                if (window.scrollY > 200) {
+                    $('.btn-random-story').addClass('btn-random-story-animate');
+                } else {
+                    $('.btn-random-story').removeClass('btn-random-story-animate');
                 }
             });
         });

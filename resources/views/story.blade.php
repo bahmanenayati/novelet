@@ -83,7 +83,11 @@
                                 <span>
                                     {{$story->mark ? "نشان شده" : "نشان کردن"}}
                                 </span>
-                                <img src="{{asset('/images/icons/Novelet_icon-0m.png')}}">
+                                @if($story->mark)
+                                    <img class="image" src="{{asset('/images/icons/Novelet_icon-0q.png')}}">
+                                @else
+                                    <img class="image" src="{{asset('/images/icons/Novelet_icon-0m.png')}}">
+                                @endif
                             </li>
                             <li onclick="shareStory()">
                                 اشتراک گذاری
@@ -100,10 +104,6 @@
     <script>
         var logined = "{{\Illuminate\Support\Facades\Auth::check()}}"
         var csrfToken = "{{ csrf_token() }}"
-        window.addEventListener('load', () => {
-            var btn = document.getElementById('copy-story-link');
-            var clipboard = new ClipboardJS(btn);
-        }, false)
 
         function shareStory() {
             if (navigator.share) {
@@ -129,6 +129,11 @@
                     xhr.setRequestHeader('X-CSRF-Token', csrfToken);
                 },
                 success: function () {
+                    if ($('#story-mark .image').attr('src') === '{{env('APP_URL')}}/images/icons/Novelet_icon-0m.png') {
+                        $('#story-mark .image').attr('src', '{{env('APP_URL')}}/images/icons/Novelet_icon-0q.png')
+                    } else {
+                        $('#story-mark .image').attr('src', '{{env('APP_URL')}}/images/icons/Novelet_icon-0m.png')
+                    }
                     if ($('#story-mark span').text().includes('نشان کردن')) {
                         return $('#story-mark span').text("نشان شده")
                     }

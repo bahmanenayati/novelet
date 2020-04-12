@@ -14,10 +14,16 @@ class StoryMarkController extends Controller
     {
         $storyId = $request->get('storyId');
         $found = UserStoryMark::query()
-            ->firstOrCreate([
-                'user_id' => Auth::user()->id,
-                'story_id' => $storyId
-            ]);
-        return response()->json($found);
+            ->where('user_id', Auth::user()->id)
+            ->where('story_id', $storyId)
+            ->first();
+        if ($found) {
+            return $found->delete();
+        }
+        $result = UserStoryMark::query()->create([
+            'user_id' => Auth::user()->id,
+            'story_id' => $storyId
+        ]);
+        return response()->json($result);
     }
 }

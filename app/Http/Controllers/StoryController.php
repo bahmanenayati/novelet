@@ -17,13 +17,11 @@ class StoryController extends Controller
 
     public function show($id)
     {
-        $story = Story::query();
-        $story->mark = null;
-        if (Auth::check()) {
-            $story->with(['mark' => function ($query) {
+        $story = Story::query()->where('id', $id)->with(['mark' => function ($query) {
+            if (Auth::check()) {
                 $query->where('user_id', Auth::user()->id);
-            }]);
-        }
+            }
+        }]);
         $story = $story->first();
         event(new StoryView($story));
         $story->views = \App\Models\StoryView::query()->where('story_id', $story->id)->get()->count();

@@ -12,7 +12,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 col-xs-12 col-sm-10" style="margin: auto">
+                    <div class="col-md-12" style="margin: auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active" aria-current="page">
