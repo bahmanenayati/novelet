@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('head')
-    <title>novelet-داستان های کوتاه</title>
+    <title>novelet-داستان کوتاه</title>
     <meta name="description" content="">
     <meta name="keywords" content="این وبسایت با هدف کمک به خواندن داستان های کوتاه راه اندازی شده است.">
 
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="داستان های کوتاه-novelet"/>
+    <meta property="og:title" content="novelet-داستان کوتاه"/>
     <meta property="og:description" content="این وبسایت با هدف کمک به خواندن داستان های کوتاه راه اندازی شده است."/>
     <meta property="og:url" content="{{env('APP_URL')}}"/>
     <meta property="og:site_name" content="Novelet"/>
-    <meta name="twitter:title" content="novelet-داستان های کوتاه">
+    <meta name="twitter:title" content="novelet-داستان کوتاه">
     <meta name="twitter:description" content="این وبسایت با هدف کمک به خواندن داستان های کوتاه راه اندازی شده است."/>
     <meta name="twitter:site" content="@benayatei">
     <meta name="twitter:creator" content="@benayatei">

@@ -278,42 +278,40 @@
 
     gtag('config', 'G-S9VRXVXZM9');
 </script>
-<script type="text/javascript">
-    // Initialize the service worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/serviceworker.js', {
-            scope: '.'
-        }).then(function (registration) {
-            // Registration was successful
-            console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
-        }, function (err) {
-            // registration failed :(
-            console.log('Laravel PWA: ServiceWorker registration failed: ', err);
-        });
-    }
-</script>
 <script>
     $(document).ready(() => {
+        // Initialize the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/serviceworker.js', {
+                scope: '.'
+            }).then(function (registration) {
+                // Registration was successful
+                console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('Laravel PWA: ServiceWorker registration failed: ', err);
+            });
+        }
         let deferredPrompt;
         const addBtn = document.querySelector('#btnAddToHomeScreen');
-        // window.addEventListener('beforeinstallprompt', (e) => {
-        //     e.preventDefault();
-        //     deferredPrompt = e;
-        //
-        //     addBtn.addEventListener('click', (e) => {
-        //         deferredPrompt.prompt();
-        //         deferredPrompt.userChoice.then((choiceResult) => {
-        //             if (choiceResult.outcome === 'accepted') {
-        //                 console.log('User accepted the A2HS prompt');
-        //             } else {
-        //                 console.log('User dismissed the A2HS prompt');
-        //             }
-        //             deferredPrompt = null;
-        //             localStorage.setItem('showedLocaleScreenDialog', true)
-        //             $('#addToHomeScreenDialog').hide()
-        //         });
-        //     });
-        // });
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            addBtn.addEventListener('click', (e) => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                    localStorage.setItem('showedLocaleScreenDialog', true)
+                    $('#addToHomeScreenDialog').hide()
+                });
+            });
+        });
         var showedLocaleScreenDialog = localStorage.getItem('showedLocaleScreenDialog')
         if (showedLocaleScreenDialog === undefined || !showedLocaleScreenDialog || showedLocaleScreenDialog === 'false') {
             $('#addToHomeScreenDialog').show()
